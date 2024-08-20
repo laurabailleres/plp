@@ -113,6 +113,7 @@ todosIguales (x:y:xs) | y /= x = True
 
 
 
+
 --ejercicio 5
 data AB a = Nil | Bin (AB a) a (AB a)
 
@@ -122,11 +123,6 @@ vacioAB n = case n of
     (Nil) -> True
 
 ---b
-negacionAB :: AB bool -> AB bool
-negacionAB n = case n of
-    (Nil) -> Nil
-    (Bin (AB bool) bool (AB bool)) -> Bin (negacionAB AB bool) (if True then False else True) (negacionAB AB bool)
-
---ERROR : guia0.hs:128:26: error: Not in scope: data constructor 'AB' 
--- (Bin (AB bool) bool (AB bool)) -> Bin (negacionAB AB bool) (if True then False else True) (negacionAB AB bool)
-    |                          ^^
+negacionAB :: AB Bool -> AB Bool
+negacionAB Nil = Nil
+negacionAB (Bin izq valor der) = Bin (negacionAB izq) (not valor) (negacionAB der)
