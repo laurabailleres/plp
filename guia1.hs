@@ -1,3 +1,10 @@
+--POR AHORA EXACTAS FUNCIONA, PERO LOS PROBLEMAS SIGUEN!
+--GRILLA SALARIAL DOCENTE: https://aduba.org.ar/wp-content/uploads/2024/07/Instructivo-Liquidacion-Salarios-JULIO-2024.pdf
+
+
+
+
+
 --ejercicio 1
 --idea general: para el ítem I hago :t nombredelafuncion en la consola. para el item II me fijo si 
 --es válido hacer :t nombredelafuncion primerparametro o si me devuelve error. si funciona es que está
