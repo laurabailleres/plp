@@ -5,6 +5,7 @@
 
 
 
+
 --ejercicio 1
 --idea general: para el ítem I hago :t nombredelafuncion en la consola. para el item II me fijo si 
 --es válido hacer :t nombredelafuncion primerparametro o si me devuelve error. si funciona es que está
