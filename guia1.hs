@@ -1,11 +1,3 @@
---POR AHORA EXACTAS FUNCIONA, PERO LOS PROBLEMAS SIGUEN!
---GRILLA SALARIAL DOCENTE: https://aduba.org.ar/wp-content/uploads/2024/07/Instructivo-Liquidacion-Salarios-JULIO-2024.pdf
-
-
-
-
-
-
 --ejercicio 1
 --idea general: para el ítem I hago :t nombredelafuncion en la consola. para el item II me fijo si 
 --es válido hacer :t nombredelafuncion primerparametro o si me devuelve error. si funciona es que está
@@ -39,3 +31,45 @@ evaluarEnCero = \f -> f 0
     --y devuelve t. 
     --II ya está currificada
 
+dosVeces = \f -> f . f
+    --I tipo: (a -> a) -> a -> a // recibe como parámetros una función y un a. le aplica a a dos
+    --veces la función.
+    --II ya está currificada.
+
+flipAll = map flip
+    --I tipo: [a -> b -> c] -> [b -> a -> c]
+    --II ya está currificada.
+
+flipRaro = flip flip
+    --I tipo: b -> (a -> b -> c) -> a -> c
+    --II 
+
+--ejercicio 2
+--I.
+curry :: ((a, b) -> c) -> a -> b -> c
+curry f x y = f (x, y)
+
+--II.
+uncurry :: (a -> b -> c) -> (a, b) -> c
+uncurry f (x, y)= f x y
+
+--III. ¾Se podría definir una función curryN, que tome una función de un número arbitrario de argumentos y
+--devuelva su versión currificada?
+--Sugerencia: pensar cuál sería el tipo de la función.
+
+--ejercicio 3
+
+sumFold :: [Int] -> Int
+sumFold = foldr (+) 0
+
+elemFold :: Eq a => a -> [a] -> Bool
+elemFold n = foldr (\x acc -> (x == n) || acc) False
+
+concatFold :: [a] -> [a] -> [a]
+concatFold (x:xs) (ys) = foldr (:) (ys) (x:xs)
+
+filterFold :: (a -> Bool) -> [a] -> [a]
+filterFold f = foldr (\x rec -> if f x then x:rec else rec) []
+
+mapFold :: (a -> b) -> [a] -> [a]
+mapFold = 
