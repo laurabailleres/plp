@@ -71,5 +71,6 @@ concatFold (x:xs) (ys) = foldr (:) (ys) (x:xs)
 filterFold :: (a -> Bool) -> [a] -> [a]
 filterFold f = foldr (\x rec -> if f x then x:rec else rec) []
 
+
 mapFold :: (a -> b) -> [a] -> [a]
-mapFold = 
+mapFold f = foldr (\x rec -> f x : rec) []
