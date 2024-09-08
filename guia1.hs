@@ -66,11 +66,10 @@ elemFold :: Eq a => a -> [a] -> Bool
 elemFold n = foldr (\x acc -> (x == n) || acc) False
 
 concatFold :: [a] -> [a] -> [a]
-concatFold (x:xs) (ys) = foldr (:) (ys) (x:xs)
+concatFold (xs) (ys) = foldr (:) ys xs
 
 filterFold :: (a -> Bool) -> [a] -> [a]
-filterFold f = foldr (\x rec -> if f x then x:rec else rec) []
-
+filterFold f = foldr (\x rec -> if f x then x : rec else rec) []
 
 mapFold :: (a -> b) -> [a] -> [b]
 mapFold f = foldr (\x rec -> f x : rec) []
@@ -80,5 +79,16 @@ mejorSegun :: (a -> a -> Bool) -> [a] -> a
 mejorSegun f = foldr1 (\x rec -> if f x rec then x else rec)
 
 --III
+--sumasParciales :: Num a => [a] -> [a]
+--sumasParciales = foldr (\x rec -> x + rec : rec)
+
+--IIII
 sumaAlternada :: Num a => [a] -> a
 sumaAlternada = foldr (-) 0
+
+sumaAlternada2 :: Num a => [a] -> a --hace lo mismo que sumaAlternada
+sumaAlternada2 = foldr1 (-)
+
+--IV
+--sumaAlternada3 :: Num a => [a] -> a ----CONSULTAR !!
+--sumaAlternada3 = foldl (-) 0
