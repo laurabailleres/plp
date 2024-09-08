@@ -58,7 +58,7 @@ uncurry f (x, y)= f x y
 --Sugerencia: pensar cuál sería el tipo de la función.
 
 --ejercicio 3
-
+--I
 sumFold :: [Int] -> Int
 sumFold = foldr (+) 0
 
@@ -72,5 +72,9 @@ filterFold :: (a -> Bool) -> [a] -> [a]
 filterFold f = foldr (\x rec -> if f x then x:rec else rec) []
 
 
-mapFold :: (a -> b) -> [a] -> [a]
+mapFold :: (a -> b) -> [a] -> [b]
 mapFold f = foldr (\x rec -> f x : rec) []
+
+--II
+mejorSegun :: (a -> a -> Bool) -> [a] -> a
+mejorSegun f = foldr1 (\x rec -> if f x rec then x else rec)
