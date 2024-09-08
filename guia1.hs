@@ -78,3 +78,7 @@ mapFold f = foldr (\x rec -> f x : rec) []
 --II
 mejorSegun :: (a -> a -> Bool) -> [a] -> a
 mejorSegun f = foldr1 (\x rec -> if f x rec then x else rec)
+
+--III
+sumaAlternada :: Num a => [a] -> a
+sumaAlternada = foldr (-) 0
