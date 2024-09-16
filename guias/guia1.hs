@@ -80,13 +80,39 @@ mejorSegun f = foldr1 (\x rec -> if f x rec then x else rec)
 
 --III
 --sumasParciales :: Num a => [a] -> [a]
---sumasParciales = foldr (\x rec -> x + rec : rec)
+--sumasParciales = foldr (\x rec -> x + (head rec) : rec) [] ----CONSULTAR!!!!
 
 --IIII
 sumaAlternada :: Num a => [a] -> a
 sumaAlternada = foldr (-) 0
 
 sumaAlternada2 :: Num a => [a] -> a --hace lo mismo que sumaAlternada
+sumaAlternada2 = foldr1 (-)
+
+--ejercicio 4
+--I
+--permutaciones :: [a] -> [[a]]
+
+--II
+partes :: [a] -> [[a]]
+partes = foldr (\x rec -> rec ++ map (x:) rec) [[]]
+
+--III
+prefijos :: [a] -> [[a]]
+prefijos (x:xs) = foldlr (\x rec -> "" : map (x:) rec) [[]]
+
+--ejercicio 5
+--elementosEnPosicionesPares NO usa recursión estructural porque usa la lista (xs) para operar.
+--en la recursión estructural solo podemos operar con x (o sea, un elemento de la lista)
+--y con la función recursiva en la lista.
+--
+--entrelazar usa recursión estructural ya que sí cumple con lo anterior.
+
+entrelazar :: [a] -> [a] -> [a]
+entrelazar (x:xs) (ys) = foldr (\ys rec -> x:head ys:rec) (x:entrelazar xs [])
+
+--ejercicio 6
+sacarUna :: Eq a => a -> [a] -> [a]
 sumaAlternada2 = foldr1 (-)
 
 --IV
