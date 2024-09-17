@@ -112,9 +112,16 @@ entrelazar :: [a] -> [a] -> [a]
 entrelazar (x:xs) (ys) = foldr (\ys rec -> x:head ys:rec) (x:entrelazar xs [])
 
 --ejercicio 6
+--a
 sacarUna :: Eq a => a -> [a] -> [a]
 sacarUna _ [] = []
 sacarUna n (x:xs) = if (x == n) then xs else x:(sacarUna n xs)
 
+--b
 --un esquema de recursión estructural no es el adecuado para resolver este problema ya que necesito
 --seguir usando la lista (xs) para operar.
+
+--c
+insertarOrdenado :: Ord a => a -> [a] -> [a]
+insertarOrdenado n [] = [n]
+insertarOrdenado n (x:xs) = if (n > x) then x:insertarOrdenado n xs else n:x:xs
