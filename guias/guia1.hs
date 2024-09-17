@@ -125,3 +125,9 @@ sacarUna n (x:xs) = if (x == n) then xs else x:(sacarUna n xs)
 insertarOrdenado :: Ord a => a -> [a] -> [a]
 insertarOrdenado n [] = [n]
 insertarOrdenado n (x:xs) = if (n > x) then x:insertarOrdenado n xs else n:x:xs
+
+--ejercicio 9
+--I
+sumaMat :: [[Int]] -> [[Int]] -> [[Int]]
+sumaMat [] [] = []
+sumaMat (x:xs) (y:ys) = zipWith (+) x y : sumaMat xs ys
