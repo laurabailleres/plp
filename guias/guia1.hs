@@ -113,8 +113,5 @@ entrelazar (x:xs) (ys) = foldr (\ys rec -> x:head ys:rec) (x:entrelazar xs [])
 
 --ejercicio 6
 sacarUna :: Eq a => a -> [a] -> [a]
-sumaAlternada2 = foldr1 (-)
-
---IV
---sumaAlternada3 :: Num a => [a] -> a ----CONSULTAR !!
---sumaAlternada3 = foldl (-) 0
+sacarUna _ [] = []
+sacarUna n (x:xs) = if (x == n) then xs else x:(sacarUna n xs)
