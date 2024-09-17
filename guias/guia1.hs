@@ -115,3 +115,6 @@ entrelazar (x:xs) (ys) = foldr (\ys rec -> x:head ys:rec) (x:entrelazar xs [])
 sacarUna :: Eq a => a -> [a] -> [a]
 sacarUna _ [] = []
 sacarUna n (x:xs) = if (x == n) then xs else x:(sacarUna n xs)
+
+--un esquema de recursión estructural no es el adecuado para resolver este problema ya que necesito
+--seguir usando la lista (xs) para operar.
