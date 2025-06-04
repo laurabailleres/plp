@@ -1,0 +1,430 @@
+\documentclass{article}
+\usepackage[a4paper, total={6.2in, 10in}]{geometry}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+
+\title{Práctica 3 - Demostración en Lógica Proposicional}
+\author{Paradigmas de Programación}
+\date{1C 2025}
+
+\begin{document}
+\renewcommand{\baselinestretch}{1.5} 
+\maketitle
+
+\section*{Ejercicio 1}{Determinar el valor de verdad de las siguientes proposiciones (fórmulas) cuando el valor de verdad de P y Q es \textbf{V}, mientras que el de S y T es \textbf{F}.}
+{\begin{enumerate}[label=\roman*.,font=\itshape]
+\item {$(\lnot P \lor Q) \rightarrow \textbf{V}$}
+\item {$(P \lor (S \land T) \lor Q) \rightarrow \textbf{V}$}
+\item {$\lnot (Q \lor S) \rightarrow \textbf{F}$}
+\item {$(\lnot Q \lor S) \iff (\lnot P \land \lnot S) \rightarrow \textbf{V}$}
+\item {$((P \lor S) \land (T \lor Q)) \rightarrow \textbf{V}$}
+\item {$(((P \lor S) \land (T \lor Q)) \iff (P \lor (S \land T ) \lor Q)) \rightarrow \textbf{V}$}
+\item {$(\lnot Q \land \lnot S) \rightarrow \textbf{F}$}
+\end{enumerate}}
+\section*{Ejercicio 2}{Mostrar que cualquier fórmula de la lógica proposicional que utilice los conectivos {$\lnot$} (negación), {$\land$} (conjunción),
+{$\lor$} (disyunción), {$\Rightarrow$} (implicación) puede reescribirse a otra fórmula equivalente que usa sólo los conectivos {$\lnot$} y {$\lor$}. Sugerencia: hacer inducción en la estructura de la fórmula.}
+\\
+\\
+{Idea general: hacer inducción en la estructura de los conectivos lógicos. Tengo una fórmula $\tau$ que puede usar el conjunto de conectivos lógicos \{ $\lnot, \ \land, \ \lor, \ \Rightarrow$\} y la quiero reescribir como una fórmula $\sigma$ que sólo utilice el conjunto de conectivos lógicos \{$\lnot, \ \lor$\} }.
+\\
+\\
+{\textbf{Caso base}: fórmula atómica. \\ $\tau_{1}$ no usa ningún conectivo lógico. $\tau_{1}$ equivale a $\sigma_{1}$ que tampoco usa ningún conectivo lógico.}
+\\
+\\
+{\textbf{Caso $\lnot$}: \\ $\tau_{1}$ sólo utiliza el conectivo $\lnot$ y es equivalente a $\sigma_{1}$ que también cumple.}
+\\
+\\
+{\textbf{Caso $\lor$}: \\ $\tau_{1} = \sigma_{1} \lor \sigma_{2}$ es equivalente a $\tau_{2} = \sigma_{1} \lor \sigma_{2}$ es equivalente a $\tau_2$ que sólo utiliza el conectivo $\lor$.} 
+\\
+\\
+{\textbf{Caso $\Rightarrow$}: \\ $\tau_{1} = \sigma_{1}\Rightarrow\sigma_{2}$ es equivalente a $\tau_{2} = \lnot\sigma_{1} \lor \sigma_{2}$ que sólo utiliza el conectivo $\lor$.}
+\\
+\\
+{\textbf{Caso $\land$}: \\ $\tau_{1} = \sigma_{1} \land \sigma_{2}$ es equivalente a $\tau_{2}=\lnot(\lnot\sigma_{1} \lor \lnot\sigma_{2}$ que sólo utiliza los conectivos $\lnot$ y $\lor$.}
+\section*{Ejercicio 3}{Sean $\tau, \ \sigma, \ \rho, \ $ y $\zeta$ proposiciones tales que $\tau \Rightarrow \sigma$ es tautología y $\rho \Rightarrow \zeta$ es contradicción. Determinar si las siguientes proposiciones son tautologías, contradicciones o contingencias y demostrarlo:}
+\begin{enumerate}[label=\roman*.,font=\itshape]
+\item{$(\tau \Rightarrow \sigma) \lor (\rho \Rightarrow \zeta)$}
+\\
+\\
+{V $\vDash (\tau \Rightarrow \sigma) \lor (\rho \Rightarrow \zeta) \iff $ V $\vDash (\tau \Rightarrow \sigma)$ ó V $\vDash (\rho \Rightarrow \zeta)$ . Importante: la V es de Valuación!!}
+\\
+\\
+{Como sé que $(\tau \Rightarrow \sigma)$ es una tautología, entonces V $\vDash (\tau \Rightarrow \sigma)$ para cualquier V. Luego,\\ V $\vDash (\tau \Rightarrow \sigma) \lor (\rho \Rightarrow \zeta) $ para cualquier V.}
+\end{enumerate}
+
+\section*{Ejercicio 5}{Demostrar en deducción natural que las siguientes fórmulas son teoremas \textbf{sin usar principios de razonamiento clásicos} salvo que se indique lo contrario. Recordemos que una fórmula $\tau$ es un teorema si y sólo si vale $\vdash \sigma$:}
+\begin{enumerate}[label=\roman*.,font=\itshape]
+\item{$Modus \ ponens$ relativizado:
+$(\rho \Rightarrow \sigma \Rightarrow \tau ) \Rightarrow (\rho \Rightarrow \sigma) \Rightarrow \rho \Rightarrow \tau$}
+\begin{prooftree}
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho \Rightarrow \sigma \Rightarrow \tau$}
+            
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho$}
+        \RightLabel{$\Rightarrow_e$}
+        \BinaryInfC{$\Gamma \vdash \sigma \Rightarrow \tau$}
+
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho \Rightarrow \ \sigma$}
+
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho$}
+        \RightLabel{$\Rightarrow_e$}
+        \BinaryInfC{$\Gamma \vdash \sigma$}
+    
+    \RightLabel{$\Rightarrow_e$}
+    \BinaryInfC{$\Gamma = (\rho \Rightarrow \sigma \Rightarrow \tau ), \ (\rho \Rightarrow \sigma), \ \rho \ \vdash \tau$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$(\rho \Rightarrow \sigma \Rightarrow \tau ), \ (\rho \Rightarrow \sigma) \vdash \rho \Rightarrow \tau$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$(\rho \Rightarrow \sigma \Rightarrow \tau ) \vdash (\rho \Rightarrow \sigma) \Rightarrow \rho \Rightarrow \tau$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash (\rho \Rightarrow \sigma \Rightarrow \tau ) \Rightarrow (\rho \Rightarrow \sigma) \Rightarrow \rho \Rightarrow \tau$}
+\end{prooftree}
+\item{Reducción al absurdo: $(\rho \Rightarrow \bot) \Rightarrow \lnot \rho$}
+\begin{prooftree}
+        \RightLabel{$_{Ax.}$}
+        \AxiomC{}
+        \UnaryInfC{$(\rho \Rightarrow \bot), \ \rho \ \vdash \rho \Rightarrow \bot$}
+        
+        \RightLabel{$_{Ax.}$}
+        \AxiomC{}
+        \UnaryInfC{$(\rho \Rightarrow \bot), \ \rho \ \vdash \rho$}
+
+    \RightLabel{$\Rightarrow_e$}
+    \BinaryInfC{$(\rho \Rightarrow \bot), \ \rho \ \vdash \bot$}
+        
+    \RightLabel{$\lnot_i$}
+    \UnaryInfC{$(\rho \Rightarrow \bot) \vdash \lnot \rho$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash (\rho \Rightarrow \bot) \Rightarrow \lnot \rho$}
+\end{prooftree}
+
+\item {Introducción de la doble negación: $\rho \Rightarrow \lnot\lnot\rho$}
+\begin{prooftree}
+        \RightLabel{$_{Ax.}$}
+        \AxiomC{}
+        \UnaryInfC{$\rho, \ \rho \ \vdash \rho$}
+        
+        \RightLabel{$_{Ax.}$}
+        \AxiomC{}
+        \UnaryInfC{$\rho, \ \rho \ \vdash \lnot \rho$}
+
+    \RightLabel{$\lnot_e$}
+    \BinaryInfC{$\rho, \ \lnot\rho \ \vdash \bot$}
+
+    \RightLabel{$\lnot_i$}
+    \UnaryInfC{$\rho \ \vdash \lnot\lnot\rho$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash \rho \Rightarrow \lnot\lnot\rho$}
+\end{prooftree}
+
+\item {Eliminación de la triple negación: $\lnot\lnot\lnot\rho \Rightarrow \lnot\rho$}
+\begin{prooftree}
+        \RightLabel{$_{Ax.}$}
+        \AxiomC{}
+        \UnaryInfC{$\lnot\lnot\lnot\rho, \ \rho \ \vdash \lnot\lnot\lnot\rho$}
+
+            \RightLabel{$_{Ax.}$}
+            \AxiomC{}
+            \UnaryInfC{$\lnot\lnot\lnot\rho, \ \lnot\rho, \ \rho \ \vdash \lnot\rho$}
+            
+            \RightLabel{$_{Ax.}$}
+            \AxiomC{}
+            \UnaryInfC{$\lnot\lnot\lnot\rho, \ \lnot\rho, \ \rho \ \vdash \rho$}
+            
+        \RightLabel{$\lnot_e$}
+        \BinaryInfC{$\lnot\lnot\lnot\rho, \ \lnot\rho, \ \rho \ \vdash \bot$}
+
+        \RightLabel{$\lnot_i$}
+        \UnaryInfC{$\lnot\lnot\lnot\rho, \ \rho \ \vdash \lnot\lnot\rho$}
+        
+
+    \RightLabel{$\lnot_e$}
+    \BinaryInfC{$\lnot\lnot\lnot\rho, \ \rho \ \vdash \bot$}
+
+    \RightLabel{$\lnot_i$}
+    \UnaryInfC{$\lnot\lnot\lnot\rho \vdash \lnot\rho$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash \lnot\lnot\lnot\rho \Rightarrow \lnot\rho$}
+\end{prooftree}
+
+\item {Contraposición: $(\rho \Rightarrow \sigma) \Rightarrow (\lnot\sigma \Rightarrow \lnot\rho)$}
+
+\begin{prooftree}
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho \Rightarrow \sigma$}
+
+            
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho$}
+
+        \RightLabel{$\Rightarrow_e$}
+        \BinaryInfC{$\Gamma = (\rho \Rightarrow \sigma), \ \lnot\sigma, \ \rho \ \vdash \sigma$}
+        
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$(\rho \Rightarrow \sigma), \ \lnot\sigma, \ \rho \ \vdash \lnot\sigma$}
+
+    \RightLabel{}
+    \BinaryInfC{$(\rho \Rightarrow \sigma), \ \lnot\sigma, \ \rho \ \vdash \bot$}
+
+    \RightLabel{$\lnot_i$}
+    \UnaryInfC{$(\rho \Rightarrow \sigma), \ \lnot\sigma \ \vdash \lnot\rho$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$(\rho \Rightarrow \sigma) \vdash \lnot\sigma \Rightarrow \lnot\rho$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash (\rho \Rightarrow \sigma) \Rightarrow (\lnot\sigma \Rightarrow \lnot\rho)$}
+\end{prooftree}
+
+\item {Adjunción: $((\rho \land \sigma) \Rightarrow \tau ) \iff (\rho \Rightarrow \sigma \Rightarrow \tau)$}
+\\
+\\
+Lo separo en dos casos ($\Rightarrow$ y $\Leftarrow$). Primero pruebo uno y después el otro.
+\begin{prooftree}
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$\Gamma \vdash (\rho \land \sigma) \Rightarrow \tau$}
+
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho$}
+
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}   
+            \UnaryInfC{$\Gamma \vdash \sigma$}
+            
+        \RightLabel{$\land_e$}
+        \BinaryInfC{$\Gamma \vdash \rho \land \sigma$}
+        
+    \RightLabel{$\Rightarrow_e$}
+    \BinaryInfC{$\Gamma = ((\rho \land \sigma) \Rightarrow \tau), \ \rho, \ \sigma \ \vdash \tau$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$((\rho \land \sigma) \Rightarrow \tau), \ \rho \ \vdash \sigma \Rightarrow \tau$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$(\rho \land \sigma) \Rightarrow \tau \vdash \rho \Rightarrow \sigma \Rightarrow \tau$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash((\rho \land \sigma) \Rightarrow \tau ) \Rightarrow (\rho \Rightarrow \sigma \Rightarrow \tau)$}
+\end{prooftree}
+\begin{prooftree}
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho \Rightarrow \sigma \Rightarrow \tau$}
+            
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho \land \sigma$}
+            \RightLabel{$\land_{e1}$}
+            \UnaryInfC{$\Gamma \vdash \rho$}
+            
+        \RightLabel{}
+        \BinaryInfC{$\Gamma \vdash \sigma \Rightarrow \tau$}
+
+        
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$\Gamma \vdash \rho \land \sigma$}
+        \RightLabel{$\land_{e2}$}
+        \UnaryInfC{$\Gamma \vdash \sigma$}
+
+    \RightLabel{$\Rightarrow_e$}
+    \BinaryInfC{$\Gamma = (\rho \Rightarrow \sigma \Rightarrow \tau), \ (\rho \land \sigma) \vdash \tau$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$(\rho \Rightarrow \sigma \Rightarrow \tau) \vdash (\rho \land \sigma) \Rightarrow \tau$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash(\rho \Rightarrow \sigma \Rightarrow \tau) \Rightarrow ((\rho \land \sigma) \Rightarrow \tau )$}
+\end{prooftree}
+
+\item {de Morgan (I): $\lnot(\rho \lor \sigma) \iff (\lnot\rho \land \lnot\sigma)$}
+
+\item {de Morgan (II): $\lnot(\rho \land \sigma) \iff (\lnot\rho \lor \lnot\sigma)$. Para la
+dirección $\Rightarrow$ es necesario usar principios de razo-
+namiento clásicos.}
+
+\item {Conmutatividad ($\land$): $(\rho \land \sigma) \Rightarrow (\sigma \land \rho)$}
+\begin{prooftree}
+        \AxiomC{}
+        
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$\rho \land \sigma \vdash \rho \land \sigma$}
+        
+        \RightLabel{$\land_{e2}$}
+        \UnaryInfC{$\rho \land \sigma \vdash \sigma$}
+
+        \AxiomC{}
+
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$\rho \land \sigma \vdash \rho \land \sigma$}
+        
+        \RightLabel{$\land_{e1}$}
+        \UnaryInfC{$\rho \land \sigma \vdash \rho$}
+
+    \RightLabel{$\land_i$}
+    \BinaryInfC{$\rho \land \sigma \vdash \sigma \land \rho$}
+    
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash (\rho \land \sigma) \Rightarrow (\sigma \land \rho)$}
+\end{prooftree}
+
+\item {Asociatividad ($\land$): $((\rho \land \sigma) \land \tau ) \iff (\rho \land (\sigma \land \tau))$}
+\\
+\\
+Lo separo en dos casos ($\Rightarrow$ y $\Leftarrow$). Primero pruebo uno y después el otro.
+\begin{prooftree}
+        \AxiomC{}
+        
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$\Gamma \vdash (\rho \land \sigma) \land \tau$}
+
+
+        \RightLabel{$\land_{e1}$}
+        \UnaryInfC{$\Gamma \vdash \rho \land \sigma$}
+        
+        \RightLabel{$\land_{e1}$}
+        \UnaryInfC{$\Gamma \vdash \rho$}
+        
+            \AxiomC{}
+            
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash (\rho \land \sigma) \land \tau$}
+
+            \RightLabel{$\land_{e1}$}
+            \UnaryInfC{$\Gamma \vdash \rho \land \sigma$}
+            
+            \RightLabel{$\land_{e2}$}
+            \UnaryInfC{$\Gamma \vdash \sigma$}
+
+            
+            \AxiomC{}
+            
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash (\rho \land \sigma) \land \tau$}
+            
+            \RightLabel{$\land_{e1}$}
+            \UnaryInfC{$\Gamma \vdash \tau$}
+            
+        \RightLabel{$\land_i$}
+        \BinaryInfC{$\Gamma \vdash  \sigma \land \tau$}
+
+    \RightLabel{$\land_i$}
+    \BinaryInfC{$\Gamma = (\rho \land \sigma) \land \tau \vdash \rho \land (\sigma \land \tau)$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash ((\rho \land \sigma) \land \tau ) \Rightarrow (\rho \land (\sigma \land \tau))$}
+\end{prooftree}
+
+\begin{prooftree}
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$\Gamma \vdash \rho \land (\sigma \land \tau)$}
+            
+            \RightLabel{$\land_{e1}$}
+            \UnaryInfC{$\Gamma \vdash \rho$}
+
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{{$\Gamma \vdash \rho \land (\sigma \land \tau)$}}
+
+            \RightLabel{$\land_{e2}$}
+            \UnaryInfC{$\Gamma \vdash \sigma \land \tau$}
+
+            \RightLabel{$\land_{e1}$}
+            \UnaryInfC{$\Gamma \vdash \sigma$}
+
+        \RightLabel{$\land_i$}
+        \BinaryInfC{$\Gamma \vdash \rho \land \sigma$}
+        
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$\Gamma \vdash \rho \land (\sigma \land \tau)$}
+
+        \RightLabel{$\land_{e2}$}
+        \UnaryInfC{$\Gamma \vdash \sigma \land \tau$}
+
+        \RightLabel{$\land_{e2}$}
+        \UnaryInfC{$\Gamma \vdash \tau$}
+
+    \RightLabel{$\land_i$}
+    \BinaryInfC{$\Gamma = \rho \land (\sigma \land \tau) \vdash (\rho \land \sigma) \land \tau$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash (\rho \land (\sigma \land \tau)) \Rightarrow ((\rho \land \sigma) \land \tau )$}
+    
+\end{prooftree}
+
+\item {Conmutatividad ($\lor$): $(\rho \lor \sigma) \Rightarrow (\sigma \lor \rho)$}
+
+\begin{prooftree}
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$(\rho \lor \sigma) \vdash (\rho \lor \sigma)$}
+
+    
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$(\rho \lor \sigma), \ \rho \ \vdash \rho$}
+        \RightLabel{$\lor_{i2}$}
+        \UnaryInfC{$(\rho \lor \sigma), \ \rho \ \vdash (\sigma \lor \rho)$}
+        
+        \AxiomC{}
+        \RightLabel{$_{Ax.}$}
+        \UnaryInfC{$(\rho \lor \sigma), \ \sigma \ \vdash \sigma$}
+        \RightLabel{$\lor_{i1}$}
+        \UnaryInfC{$(\rho \lor \sigma), \ \sigma \ \vdash (\sigma \lor \rho)$}
+
+    \RightLabel{$\lor_e$}
+    \TrinaryInfC{$(\rho \lor \sigma) \vdash (\sigma \lor \rho)$}
+
+    \RightLabel{$\Rightarrow_i$}
+    \UnaryInfC{$\vdash (\rho \lor \sigma) \Rightarrow (\sigma \lor \rho)$}
+\end{prooftree}
+\end{enumerate}
+
+\section*{Ejercicio 6}{Demostrar en deducción natural que vale $\vdash \sigma$ para cada una de las siguientes fórmulas. Para estas fórmulas es imprescindible \textbf{usar lógica clásica}:}
+\begin{enumerate}[label=\roman*.,font=\itshape]
+
+    \item {Absurdo clásico: $(\lnot\tau \Rightarrow \bot) \Rightarrow \tau$}
+
+    \begin{prooftree}
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$(\lnot\tau \Rightarrow \bot), \lnot\tau \vdash \lnot\tau \Rightarrow \bot$}
+            
+            \AxiomC{}
+            \RightLabel{$_{Ax.}$}
+            \UnaryInfC{$(\lnot\tau \Rightarrow \bot), \lnot\tau \vdash \lnot\tau$}
+
+        \RightLabel{$\Rightarrow_e$}
+        \BinaryInfC{$(\lnot\tau \Rightarrow \bot), \lnot\tau \vdash \bot$}
+
+        \RightLabel{$_{PBC}$}
+        \UnaryInfC{$(\lnot\tau \Rightarrow \bot) \vdash \tau$}        
+
+        \RightLabel{$\Rightarrow_i$}
+        \UnaryInfC{$\vdash (\lnot\tau \Rightarrow \bot) \Rightarrow \tau$}
+    \end{prooftree}
+
+\end{enumerate}
+
+\end{document}
