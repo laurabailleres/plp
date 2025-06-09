@@ -165,3 +165,51 @@ menorOIgual2(X, suc(Y)) :- menorOIgual2(X, Y).
 % X = suc(suc(suc(suc(suc(suc(0)))))) .
 
 % si
+
+
+
+% EJERCICIO 4
+% juntar(?Lista1,?Lista2,?Lista3)
+juntar([], L2, L2).
+juntar([X|L1], L2, [X|Lrec]) :- juntar(L1, L2, Lrec).
+
+% si antes de decir quién va a ser L3 llamo a juntar(L1, L2, Lrec)
+% se cuelga !! porque sigue unificando infinitamente
+% si tengo antes que L3 = [X|Lrec] L3 no va a unificar con la lista 
+% vacía
+
+
+
+% EJERCICIO 5
+% ítem I
+% last(?L, ?U)
+last(L, U) :- append(_, [U], L).
+
+% ítem II
+% reverse(+L, ?R)
+reverse([], []). 
+reverse([X|L], R) :- reverse(L, Lrec), append(Lrec, [X], R).
+
+% ítem III
+% prefijo(?P, +L)
+prefijo(P, L) :- append(P, _, L).
+
+% ítem IV
+% sufijo(?S, +L)
+sufijo(S, L) :- append(_, S, L).
+
+% sufijoFacha(?S, +L)
+sufijoFacha(S, L) :- reverse(L, R), prefijo(S, R).
+
+% ítem V
+% sublista(?S, +L)
+sublista([], L).
+sublista(S, L) :- S = [_|_], prefijo(Pre, L), sufijo(Suf, L), append(Pre, S, PreSub), append(PreSub, Suf, L).
+
+% sublistaFacha(?S, +L)
+sublistaFacha([], L).
+sublistaFacha(S, L) :- S = [_|_], prefijo(Pre, L), sufijo(S, Pre).
+
+% ítem VI
+% pertenece(?X, +L)
+pertenece(X, L) :- append(_, [X|_], L).
