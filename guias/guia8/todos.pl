@@ -221,3 +221,26 @@ pertenece(X, L) :- append(_, [X|_], L).
 aplanar([], []).
 aplanar([X | L], [X | YS]) :- X \= [], X \= [_|_], aplanar(L, YS).
 aplanar([X | L], L3) :- is_list(X), aplanar(X, Y), aplanar(L, L2), append(Y, L2, L3).
+
+
+
+% EJERCICIO 7
+% ítem I
+% intersección(+L1, +L2, -L3)
+interseccion([], _, []).
+interseccion([X|L1], L2, L3) :- not(member(X, L2)), interseccion(L1, L2, L3).
+interseccion([X|L1], L2, [X|L3]) :- member(X, L2), interseccion(L1, L2, L3).
+
+% partir(?N, ?L, ?L1, ?L2)
+partir(N, L, L1, L2) :- append(L1, L2, L), length(L1, N).
+
+% ítem II
+% borrarRec(+ListaOriginal, +X, -Xs)
+borrar(L, X, L) :- not(member(X, L)).
+borrar(L, X, Xs) :- not(not(member(X, L))), append(L1, [X|L2], L), not(member(X, L1)), borrar(L2, X, L2X), append(L1, L2X, Xs).
+
+% ítem III
+% sacarDuplicados(+L1, -L2)
+sacarDuplicados([], []).
+sacarDuplicados([X|L1], L2) :- member(X, L1), sacarDuplicados(L1, L2).
+sacarDuplicados([X|L1], [X|L2]) :- not(member(X, L1)), sacarDuplicados(L1, L2).
