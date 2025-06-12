@@ -213,3 +213,11 @@ sublistaFacha(S, L) :- S = [_|_], prefijo(Pre, L), sufijo(S, Pre).
 % ítem VI
 % pertenece(?X, +L)
 pertenece(X, L) :- append(_, [X|_], L).
+
+
+
+% EJERCICIO 6 
+% ejercicio 6
+aplanar([], []).
+aplanar([X | L], [X | YS]) :- X \= [], X \= [_|_], aplanar(L, YS).
+aplanar([X | L], L3) :- is_list(X), aplanar(X, Y), aplanar(L, L2), append(Y, L2, L3).
