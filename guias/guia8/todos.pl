@@ -245,6 +245,16 @@ sacarDuplicados([], []).
 sacarDuplicados([X|L1], L2) :- member(X, L1), sacarDuplicados(L1, L2).
 sacarDuplicados([X|L1], [X|L2]) :- not(member(X, L1)), sacarDuplicados(L1, L2).
 
+% ítem IV
+permutación(+L1, ?L2) 
+permutacion([], []).
+permutacion([X|L1], L2) :- append(L3, [X], L2), permutacion(L1, L3).
+
+% ítem V
+% reparto(+L, +N, -LListas)
+reparto([], 0, []).
+reparto(L, N, [X|LL]) :- append(X, Lrec, L), N > 0 , N2 is N-1, reparto(Lrec, N2, LL).
+
 
 
 % ejercicio 9
