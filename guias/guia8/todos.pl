@@ -292,3 +292,11 @@ altura(bin(I, _, D), A) :- altura(I,A1), altura(D,A2), A is max(A1, A2) + 1.
 % cantidadDeNodos(+B, ?N)
 cantidadDeNodos(nil, 0).
 cantidadDeNodos(bin(I, _, D), N) :- cantidadDeNodos(I, CI), cantidadDeNodos(D, CD), N is 1+CI+CD.
+
+
+
+% EJERCICIO 12
+% ítem I
+% inOrder(+AB, -Lista)
+inOrder(nil, []).
+inOrder(bin(I, R, D), L) :- inOrder(I, LI), inOrder(D, LD), append(LI, [R], A1), append(A1, LD, L). 
