@@ -245,19 +245,17 @@ sacarDuplicados([], []).
 sacarDuplicados([X|L1], L2) :- member(X, L1), sacarDuplicados(L1, L2).
 sacarDuplicados([X|L1], [X|L2]) :- not(member(X, L1)), sacarDuplicados(L1, L2).
 
-% ítem IV
-permutación(+L1, ?L2) 
-permutacion([], []).
-permutacion([X|L1], L2) :- append(L3, [X], L2), permutacion(L1, L3).
 
-% ítem V
-% reparto(+L, +N, -LListas)
-reparto([], 0, []).
-reparto(L, N, [X|LL]) :- append(X, Lrec, L), N > 0 , N2 is N-1, reparto(Lrec, N2, LL).
+
+% EJERCICIO 8
+% parteQueSuma(+L,+S,-P)
+parteQueSuma(_, 0, []).
+parteQueSuma([X|L], S, [X|P]) :- S > 0, N is S-X, parteQueSuma(L, N, P).
+parteQueSuma([_|L], S, P) :- S > 0, parteQueSuma(L, S, P).
 
 
 
-% ejercicio 9
+% EJERCICIO 9
 desde(X,X).
 desde(X,Y) :- N is X+1, desde(N,Y).
 
