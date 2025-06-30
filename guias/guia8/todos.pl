@@ -245,6 +245,23 @@ sacarDuplicados([], []).
 sacarDuplicados([X|L1], L2) :- member(X, L1), sacarDuplicados(L1, L2).
 sacarDuplicados([X|L1], [X|L2]) :- not(member(X, L1)), sacarDuplicados(L1, L2).
 
+% ítem IV
+% permutación(+L1, ?L2) 
+permutacion([], []).
+permutacion(L1, L2) :- length(L1, N), length(L2, N), interseccion(L1, L2, L1).
+
+% ítem V
+% reparto(+L, +N, -LListas)
+reparto([], 0, []).
+reparto(L, N, [X|LL]) :- append(X, Lrec, L), N > 0 , N2 is N-1, reparto(Lrec, N2, LL).
+
+%ítem VI
+% hayVacias
+hayVacias(XS) :- member([], XS).
+
+% repartoSinVacias(+L, +N, -LListas)
+repartoSinVacias(L1, N, L2) :- reparto(L1, N, L2), not(hayVacias(L2)).
+
 
 
 % EJERCICIO 8
@@ -300,3 +317,8 @@ cantidadDeNodos(bin(I, _, D), N) :- cantidadDeNodos(I, CI), cantidadDeNodos(D, C
 % inOrder(+AB, -Lista)
 inOrder(nil, []).
 inOrder(bin(I, R, D), L) :- inOrder(I, LI), inOrder(D, LD), append(LI, [R], A1), append(A1, LD, L). 
+
+% ítem II
+% árbolConInorder(+Lista, -AB)
+arbolConInorder([], nil).
+arbolConInorder(XS, AB) :- append(LI, [X|LD], XS), arbolConInorder(LI, AI), arbolConInorder(LD, AD), AB = bin(AI, X, AD).
