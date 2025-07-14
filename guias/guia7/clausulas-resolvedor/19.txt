@@ -1,0 +1,4 @@
+¬r(X, X)
+¬r(X, Y), r(Y, X)
+¬r(X, Y), ¬r(Y, Z), r(X, Z)
+r(c, f(c))
