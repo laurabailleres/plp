@@ -1,0 +1,3 @@
+esContacto(X, f(X))
+¬esContacto(X, Y), esContacto(Y, X)
+¬esContacto(X, c)
