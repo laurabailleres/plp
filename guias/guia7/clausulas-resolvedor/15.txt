@@ -1,0 +1,6 @@
+v(C), p(f(C), C)
+¬v(C), ¬p(E, C)
+p(E, i(C)), p(E, C)
+¬p(E, C), p(E, i(C))
+v(i(a))
+¬v(a) 

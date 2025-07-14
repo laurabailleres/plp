@@ -1,0 +1,4 @@
+¬suma(X, Y, Z), suma(X, suc(Y ), suc(Z))
+suma(X, cero, X)
+¬suma(X, X, Y ), par(Y )
+¬par(suc(suc(cero)))
