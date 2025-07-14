@@ -1,0 +1,7 @@
+r(alan)
+j(alan)
+¬r(X3), ¬pl(Y3), ¬res(X3, Y3), i(X3)
+¬r(X4), ¬j(X4), ¬pr(Y4), res(X4, Y4)
+¬pr(Y5), pl(Y5)
+pr(c)
+¬i(X7)
