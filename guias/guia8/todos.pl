@@ -370,6 +370,29 @@ cuadradoSemiMagico(N, XS) :- between(0, inf, M), matrizQueSuma(M, N, N, XS).
 
 
 
+% EJERCICIO 15
+tri(A,B,C).
+
+% ítem I
+% esTriangulo(+T)
+esTriangulo(tri(A,B,C)) :- 0<A, 0<B, 0<C, A < B+C, B < A+C, C < B+A.
+
+tupla((A,B)) :- between(0,inf,N), between(0,N,A), B is N-A.
+
+% ítem II
+% perimetro(?T, ?P)
+perimetro(tri(A,B,C), P) :- ground(tri(A,B,C)), P is A+B+C.
+perimetro(tri(A,B,C), P) :- not(ground(tri(A,B,C))), nonvar(P), 
+    between(1,P,A), between(1,P,B), between(1,P,C), P is A+B+C, 
+    esTriangulo(tri(A,B,C)).
+perimetro(tri(A,B,C), P) :- not(ground((tri(A,B,C)))), var(P), between(1,inf,P), perimetro(tri(A,B,C), P).
+
+% ítem III
+% triangulo(-T)
+triangulo(T) :- perimetro(T, _).
+
+
+
 % EJERCICIO 16
 frutal(frutilla).
 frutal(banana).
@@ -401,3 +424,37 @@ cremoso(dulceDeLeche).
 % X. encuentra X=banana y luego, en este subárbol, encuentra Y=frutilla e
 % Y=banana. por último busca otra instanciación para X y como no la encuentra
 % -> false.
+
+
+
+% EJERCICIO 18
+% esCorte(+L,-L1,-L2)
+esCorte(L, [X|XS], [Y|YS]) :- append([X|XS], [Y|YS], L).
+
+% esMejorCorte(+C1, C2)
+esMejorCorte(C1, C2, D1, D2) :- 
+    sumlist(C1, SC1), sumlist(C2, SC2), S1 is abs(SC1-SC2), 
+    sumlist(D1, SD1), sumlist(D2, SD2), S2 is abs(SD1-SD2), 
+    S1 < S2.
+
+% corteMásParejo(+L,-L1,-L2)
+corteMásParejo(L, L1, L2) :- esCorte(L, L1, L2), not((esCorte(L, M1, M2), 
+    esMejorCorte(M1, M2, L1, L2))).
+
+
+
+% EJERCICIO 20
+% esPrimo(+N)
+esPrimo(2).
+esPrimo(N) :- N>2, M is N-1, not((between(2, M, B), mod(N, B) =:= 0)).
+
+% numeroPoderoso(+M)
+numeroPoderoso(M) :- not((between(2, M, P), esPrimo(P), 
+    mod(M,P) =:= 0, B2 is P*P, mod(M,B2) =\= 0)).
+
+% minimoDesde(-X, +C)
+minimoDesde(C, C) :- numeroPoderoso(C).
+minimoDesde(X, C) :- not(numeroPoderoso(C)), C1 is C+1, minimoDesde(X, C1).
+
+% próximoNumPoderoso(+X,-Y)
+proximoNumPoderoso(X, Y) :- X1 is X+1, minimoDesde(Y, X1).
